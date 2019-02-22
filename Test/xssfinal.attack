@@ -4,18 +4,18 @@ Background:
   Given "arachni" is installed
   And the following profile:
   | name              | environment_variable_name     |
-  | url               | TARGET_HOSTNAME               |
+  | hostname          | TARGET_HOSTNAME               |
 
 Scenario: Do a xss check on the path
   When I launch an "arachni" attack with:
   """
-  arachni --checks=xss_path --output-verbose --scope-page-limit=1 <ur>
+  arachni --checks=xss_path --output-verbose --scope-page-limit=1 http://<hostname>:8008/login
   """
   Then the output should contain "0 issues were detected"
   
 Scenario: Do a xss check on the event
   When I launch an "arachni" attack with:
   """
-  arachni --checks=xss_event --output-verbose --scope-page-limit=1 <url>
+  arachni --checks=xss_event --output-verbose --scope-page-limit=1 http://<hostname>:8008/login
   """
   Then the output should contain "0 issues were detected"
