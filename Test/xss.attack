@@ -1,3 +1,4 @@
+@slow
 Feature: Check for cross site scripting (XSS) using arachni against gruyere
 Background:
   Given "arachni" is installed
